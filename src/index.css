@@ -1,0 +1,82 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+#root { height: 100%; }
+
+/* ── Design tokens ─────────────────────────────────────────── */
+:root {
+  /* surfaces */
+  --bg:              #f8f5f0;
+  --surface:         #f2ede6;
+  --surface-raised:  #fffcf8;
+  /* borders */
+  --border:          #ddd6cb;
+  --border-light:    #e8e2da;
+  /* text */
+  --text:            #2e2a25;
+  --text-muted:      #9a8f83;
+  --text-hint:       #c4bcb3;
+  /* shadows */
+  --shadow-sm:       rgba(60, 40, 20, 0.07);
+  --shadow-md:       rgba(60, 40, 20, 0.11);
+  /* inputs */
+  --input-bg:        #fdfaf6;
+  /* canvas dot */
+  --dot:             #e2dbd0;
+  /* scrollbar */
+  --sb-track:        #ece7df;
+  --sb-thumb:        #cdc5bb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:              #1c1a17;
+    --surface:         #232019;
+    --surface-raised:  #2a2720;
+    --border:          #38332c;
+    --border-light:    #302b25;
+    --text:            #ede8e0;
+    --text-muted:      #7a7068;
+    --text-hint:       #4a4540;
+    --shadow-sm:       rgba(0, 0, 0, 0.25);
+    --shadow-md:       rgba(0, 0, 0, 0.38);
+    --input-bg:        #1c1a17;
+    --dot:             #2a2620;
+    --sb-track:        #1c1a17;
+    --sb-thumb:        #38332c;
+  }
+}
+
+/* ── Animations ────────────────────────────────────────────── */
+@keyframes overtime-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.32; }
+}
+
+.overtime-arc {
+  animation: overtime-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes card-appear {
+  from { opacity: 0; transform: translateY(6px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.timer-card-appear {
+  animation: card-appear 0.22s ease-out forwards;
+}
+
+/* ── Scrollbars ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--sb-track); }
+::-webkit-scrollbar-thumb { background: var(--sb-thumb); border-radius: 99px; }
+
+/* ── Focus ──────────────────────────────────────────────────── */
+button:focus-visible { outline: 2px solid var(--text-muted); outline-offset: 2px; }
+input:focus          { outline: none; }
