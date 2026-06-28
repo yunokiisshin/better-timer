@@ -153,13 +153,12 @@ export default function App() {
     [setAll, setAllSessions, setAllLinear],
   );
 
-  // Load default setup on first-ever launch (all three storage keys absent)
+  // Load default setup on first-ever launch
   useEffect(() => {
-    const neverUsed =
-      localStorage.getItem('better-timer-v1') === null &&
-      localStorage.getItem('better-timer-sessions-v1') === null &&
-      localStorage.getItem('better-timer-linear-sessions-v1') === null;
-    if (neverUsed) handleLoadData(parseCSV(DEFAULT_SETUP_CSV));
+    if (localStorage.getItem('better-timer-initialized') === null) {
+      localStorage.setItem('better-timer-initialized', '1');
+      handleLoadData(parseCSV(DEFAULT_SETUP_CSV));
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
